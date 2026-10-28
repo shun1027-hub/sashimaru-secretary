@@ -61,6 +61,9 @@ def ts(sec):
 def telop(start, end, text, color, x, y, size=96):
     """縁取り＋ぼかしの光彩を下に敷いた、ポップするテロップ（2レイヤー）。改行は \\n。"""
     c = COLORS.get(color, color)
+    # 横幅からはみ出さないよう、一番長い行に合わせて文字を小さくする
+    longest = max(len(line) for line in text.split("\n"))
+    size = min(size, int((W - 120) / max(longest, 1)))
     text = text.replace("\n", "\\N")
     glow = f"{{\\pos({x},{y})\\fs{size}{POP}\\bord16\\blur10\\3c{c}\\1a&HFF&}}{text}"
     main = f"{{\\pos({x},{y})\\fs{size}{POP}\\bord6\\3c{c}}}{text}"
@@ -111,19 +114,24 @@ def build_ass(plan):
 
 def render(plan, out):
     cuts = plan["cuts"]
+    # 各カットの長さをフレーム単位にそろえる（テロップと映像の切り替わりがずれないように）
+    frames = [max(1, round(cut["dur"] * FPS)) for cut in cuts]
+    for cut, n in zip(cuts, frames):
+        cut["dur"] = n / FPS
     with tempfile.TemporaryDirectory() as tmp:
         ass = Path(tmp) / "telop.ass"
         ass.write_text(build_ass(plan), encoding="utf-8")
 
         args = ["ffmpeg", "-v", "error", "-y"]
         for cut in cuts:
-            args += ["-ss", str(cut["start"]), "-t", str(cut["dur"]), "-i", str(cut["src"])]
+            args += ["-ss", str(cut["start"]), "-t", str(cut["dur"] + 0.5), "-i", str(cut["src"])]
 
         parts = []
         for i in range(len(cuts)):
             parts.append(
                 f"[{i}:v]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
-                f"fps={FPS},setsar=1,format=yuv420p[v{i}]"
+                f"fps={FPS},tpad=stop_mode=clone:stop_duration=1,trim=end_frame={frames[i]},"
+                f"setpts=PTS-STARTPTS,setsar=1,format=yuv420p[v{i}]"
             )
         concat = "".join(f"[v{i}]" for i in range(len(cuts)))
         grade = "eq=saturation=1.18:brightness=0.02:contrast=1.04"

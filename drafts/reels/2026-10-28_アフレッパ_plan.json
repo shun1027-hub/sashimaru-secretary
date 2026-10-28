@@ -1,0 +1,30 @@
+{
+  "hook": {"label": "秋のおでかけ", "lines": ["標高550mの高原で", "親子で大冒険"], "area": "岐阜県"},
+  "end": {"name": "AFUREPPA", "area": "岐阜県揖斐川町"},
+  "cuts": [
+    {"src": "clips/バギー.mov", "start": 12.0, "dur": 1.6},
+    {"src": "clips/バギー.mov", "start": 9.8, "dur": 0.9, "text": "バギーに乗って"},
+    {"src": "clips/バギー.mov", "start": 11.0, "dur": 0.9, "text": "高原をドライブ！"},
+    {"src": "clips/バギー.mov", "start": 14.3, "dur": 0.9, "text": "景色が最高すぎる〜"},
+    {"src": "clips/ソリ滑り.mp4", "start": 0.6, "dur": 0.9, "text": "芝ソリもできて"},
+    {"src": "clips/ソリ滑り.mp4", "start": 5.0, "dur": 0.9, "text": "広〜い芝生を"},
+    {"src": "clips/ソリ滑り.mp4", "start": 17.6, "dur": 1.0, "text": "一気にすべり降りる！"},
+    {"src": "clips/ステージ②.mp4", "start": 2.5, "dur": 0.8, "text": "芝生広場も"},
+    {"src": "clips/ステージ①.mp4", "start": 33.0, "dur": 0.9, "text": "開放感たっぷり"},
+    {"src": "clips/コテージ外観.mp4", "start": 1.0, "dur": 0.9, "text": "泊まるなら"},
+    {"src": "clips/コテージ外観.mp4", "start": 20.0, "dur": 0.8, "text": "森の中のコテージ"},
+    {"src": "clips/コテージ中.mp4", "start": 8.0, "dur": 0.9, "text": "2段ベッドに"},
+    {"src": "clips/コテージ中.mp4", "start": 44.0, "dur": 0.9, "text": "キッチン付き"},
+    {"src": "clips/BBQ①.mp4", "start": 1.0, "dur": 0.9, "text": "BBQは"},
+    {"src": "clips/BBQ①.mp4", "start": 6.0, "dur": 0.9, "text": "屋根付きで安心"},
+    {"src": "clips/お風呂②.mp4", "start": 0.0, "dur": 0.9, "text": "大浴場や"},
+    {"src": "clips/シャワールーム.mp4", "start": 2.0, "dur": 0.9, "text": "きれいな\nシャワールーム"},
+    {"src": "clips/売店.mp4", "start": 5.0, "dur": 0.9, "text": "売店もあるから"},
+    {"src": "clips/売店.mp4", "start": 12.5, "dur": 0.8, "text": "忘れ物しても安心"},
+    {"src": "clips/センターハウス2階.mp4", "start": 33.5, "dur": 0.9, "text": "室内あそび場も"},
+    {"src": "clips/センターハウス2階_食堂.mp4", "start": 5.0, "dur": 0.8, "text": "広々食堂"},
+    {"src": "clips/ソリ滑り.mp4", "start": 12.6, "dur": 0.9, "text": "いつもと違う"},
+    {"src": "clips/バギー.mov", "start": 16.0, "dur": 1.0, "text": "ちょっと特別な\nおでかけ"},
+    {"src": "clips/バギー.mov", "start": 17.0, "dur": 2.0}
+  ]
+}
