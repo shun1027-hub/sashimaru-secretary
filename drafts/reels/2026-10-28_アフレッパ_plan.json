@@ -15,7 +15,8 @@
     {
       "src": "clips/バギー.mov",
       "start": 10.9,
-      "dur": 1.9
+      "dur": 1.9,
+      "text": "秋のおでかけ\n標高550mの高原で\n親子で大冒険"
     },
     {
       "src": "clips/ステージ①.mp4",
@@ -92,8 +93,8 @@
     {
       "src": "clips/ステージ②.mp4",
       "start": 6.0,
-      "dur": 2.3
+      "dur": 2.3,
+      "text": "『AFUREPPA』\n岐阜県揖斐川町"
     }
-  ],
-  "music": "bgm.wav"
+  ]
 }
