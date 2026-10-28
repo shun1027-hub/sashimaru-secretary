@@ -28,10 +28,12 @@ description: Googleドライブに置かれた動画素材から、テロップ�
 
 ## 5. 書き出す
 ```
+python3 tools/make_bgm.py bgm.wav <リールの秒数> --seed <数字>
 python3 tools/make_reel.py plan.json out.mp4
 ```
+- plan.json に `"music": "bgm.wav"` を入れる。BGMは毎回 seed を変えて、同じ曲ばかりにならないようにする。
 - 書き出し後、数か所の静止画を切り出して、テロップの位置、文字切れ、カットのつながりを自分で確認する。
-- 音声は入れない（音楽はInstagramで付ける）。
+- 色補正はしない（plan に grade を入れない）。
 
 ## 6. 返す
 - 完成した MP4 をGoogleドライブに返す方法がまだ用意できていない場合は、ファイルの場所を伝える。

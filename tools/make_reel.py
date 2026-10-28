@@ -11,10 +11,12 @@ plan.json の例:
     {"src": "clips/b.mov", "start": 0.0, "dur": 1.0, "text": "", "color": "pink"}
   ],
   "hook": {"label": "期間限定", "lines": ["春にやりたい", "親子で楽しむ和体験"], "area": "岐阜県"},
-  "end": {"name": "長良川清流ホテル", "area": "岐阜県岐阜市"}
+  "end": {"name": "長良川清流ホテル", "area": "岐阜県岐阜市"},
+  "music": "bgm.wav"
 }
 - hook は最初のカットに重ねる。end は最後のカットに重ねる。
-- 音声は入れない（音楽は Instagram で付ける）。
+- music を指定すると BGM を入れる（素材の音声は使わない）。省略すると音なし。
+- 色補正はしない（本人の希望）。必要なら "grade" に ffmpeg のフィルタを書く。
 """
 import json
 import subprocess
@@ -134,12 +136,20 @@ def render(plan, out):
                 f"setpts=PTS-STARTPTS,setsar=1,format=yuv420p[v{i}]"
             )
         concat = "".join(f"[v{i}]" for i in range(len(cuts)))
-        # 色補正は控えめ（本人から「色が濃すぎる」と指摘あり）。plan の "grade" で上書きできる
-        grade = plan.get("grade", "eq=saturation=1.03:brightness=0.01:contrast=1.01")
+        # 色補正は既定でしない（本人から「色編集は不要」と指摘あり）
+        grade = plan.get("grade")
         sub = f"subtitles={ass}:fontsdir={FONTS_DIR}"
-        graph = ";".join(parts) + f";{concat}concat=n={len(cuts)}:v=1:a=0,{grade},{sub}[out]"
+        chain = ",".join(x for x in (grade, sub) if x)
+        graph = ";".join(parts) + f";{concat}concat=n={len(cuts)}:v=1:a=0,{chain}[out]"
 
-        args += ["-filter_complex", graph, "-map", "[out]", "-an",
+        audio = ["-an"]
+        if plan.get("music"):
+            total = sum(cut["dur"] for cut in cuts)
+            args += ["-i", str(plan["music"])]
+            graph += f";[{len(cuts)}:a]atrim=0:{total:.3f},afade=t=out:st={max(0, total - 1.5):.3f}:d=1.5[aout]"
+            audio = ["-map", "[aout]", "-c:a", "aac", "-b:a", "192k"]
+
+        args += ["-filter_complex", graph, "-map", "[out]", *audio,
                  "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-movflags", "+faststart", str(out)]
         subprocess.run(args, check=True)
 
@@ -152,6 +162,8 @@ if __name__ == "__main__":
     for cut in plan["cuts"]:
         src = Path(cut["src"])
         cut["src"] = src if src.is_absolute() else plan_path.parent / src
+    if plan.get("music") and not Path(plan["music"]).is_absolute():
+        plan["music"] = plan_path.parent / plan["music"]
     # 似たカット（同じ素材の近い場面）が続くと飽きるので、続いていたら知らせる
     for prev, cur in zip(plan["cuts"], plan["cuts"][1:]):
         if prev["src"] == cur["src"] and abs(prev["start"] - cur["start"]) < 5:

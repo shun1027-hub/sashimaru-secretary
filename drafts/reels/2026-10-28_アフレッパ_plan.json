@@ -1,20 +1,99 @@
 {
-  "hook": {"label": "秋のおでかけ", "lines": ["標高550mの高原で", "親子で大冒険"], "area": "岐阜県"},
-  "end": {"name": "AFUREPPA", "area": "岐阜県揖斐川町"},
+  "hook": {
+    "label": "秋のおでかけ",
+    "lines": [
+      "標高550mの高原で",
+      "親子で大冒険"
+    ],
+    "area": "岐阜県"
+  },
+  "end": {
+    "name": "AFUREPPA",
+    "area": "岐阜県揖斐川町"
+  },
   "cuts": [
-    {"src": "clips/バギー.mov", "start": 10.9, "dur": 1.9},
-    {"src": "clips/ステージ①.mp4", "start": 32.5, "dur": 1.5, "text": "目の前に広がる\n大自然"},
-    {"src": "clips/ソリ滑り.mp4", "start": 11.2, "dur": 1.7, "text": "芝ソリで一気に\nすべり降りたり"},
-    {"src": "clips/バギー.mov", "start": 12.6, "dur": 1.7, "text": "バギーで\n高原をドライブしたり"},
-    {"src": "clips/コテージ外観.mp4", "start": 19.5, "dur": 1.5, "text": "森の中のコテージは"},
-    {"src": "clips/コテージ中.mp4", "start": 7.5, "dur": 1.5, "text": "2段ベッドに"},
-    {"src": "clips/コテージ中.mp4", "start": 43.0, "dur": 1.4, "text": "キッチン付き"},
-    {"src": "clips/BBQ①.mp4", "start": 5.5, "dur": 1.5, "text": "屋根付きのBBQ場に"},
-    {"src": "clips/お風呂②.mp4", "start": 0.0, "dur": 1.6, "text": "景色を見ながら\n入れる大浴場"},
-    {"src": "clips/売店.mp4", "start": 4.5, "dur": 1.5, "text": "売店もあるから\n忘れ物しても安心"},
-    {"src": "clips/センターハウス2階.mp4", "start": 32.8, "dur": 1.5, "text": "室内あそび場も"},
-    {"src": "clips/ソリ滑り.mp4", "start": 17.4, "dur": 1.5, "text": "いつもと違う"},
-    {"src": "clips/バギー.mov", "start": 15.5, "dur": 1.6, "text": "ちょっと特別な\nおでかけ"},
-    {"src": "clips/ステージ②.mp4", "start": 6.0, "dur": 2.3}
-  ]
+    {
+      "src": "clips/バギー.mov",
+      "start": 10.9,
+      "dur": 1.9
+    },
+    {
+      "src": "clips/ステージ①.mp4",
+      "start": 32.5,
+      "dur": 1.5,
+      "text": "目の前に広がる\n大自然"
+    },
+    {
+      "src": "clips/ソリ滑り.mp4",
+      "start": 11.2,
+      "dur": 1.7,
+      "text": "芝ソリで一気に\nすべり降りたり"
+    },
+    {
+      "src": "clips/バギー.mov",
+      "start": 12.6,
+      "dur": 1.7,
+      "text": "バギーで\n高原をドライブしたり"
+    },
+    {
+      "src": "clips/コテージ外観.mp4",
+      "start": 19.5,
+      "dur": 1.5,
+      "text": "森の中のコテージは"
+    },
+    {
+      "src": "clips/コテージ中.mp4",
+      "start": 7.5,
+      "dur": 1.5,
+      "text": "2段ベッドに"
+    },
+    {
+      "src": "clips/コテージ中.mp4",
+      "start": 43.0,
+      "dur": 1.4,
+      "text": "キッチン付き"
+    },
+    {
+      "src": "clips/BBQ①.mp4",
+      "start": 5.5,
+      "dur": 1.5,
+      "text": "屋根付きのBBQ場に"
+    },
+    {
+      "src": "clips/お風呂②.mp4",
+      "start": 0.0,
+      "dur": 1.6,
+      "text": "景色を見ながら\n入れる大浴場"
+    },
+    {
+      "src": "clips/売店.mp4",
+      "start": 4.5,
+      "dur": 1.5,
+      "text": "売店もあるから\n忘れ物しても安心"
+    },
+    {
+      "src": "clips/センターハウス2階.mp4",
+      "start": 32.8,
+      "dur": 1.5,
+      "text": "室内あそび場も"
+    },
+    {
+      "src": "clips/ソリ滑り.mp4",
+      "start": 17.4,
+      "dur": 1.5,
+      "text": "いつもと違う"
+    },
+    {
+      "src": "clips/バギー.mov",
+      "start": 15.5,
+      "dur": 1.6,
+      "text": "ちょっと特別な\nおでかけ"
+    },
+    {
+      "src": "clips/ステージ②.mp4",
+      "start": 6.0,
+      "dur": 2.3
+    }
+  ],
+  "music": "bgm.wav"
 }
