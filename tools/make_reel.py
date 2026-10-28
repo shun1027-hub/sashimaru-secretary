@@ -134,7 +134,8 @@ def render(plan, out):
                 f"setpts=PTS-STARTPTS,setsar=1,format=yuv420p[v{i}]"
             )
         concat = "".join(f"[v{i}]" for i in range(len(cuts)))
-        grade = "eq=saturation=1.18:brightness=0.02:contrast=1.04"
+        # 色補正は控えめ（本人から「色が濃すぎる」と指摘あり）。plan の "grade" で上書きできる
+        grade = plan.get("grade", "eq=saturation=1.03:brightness=0.01:contrast=1.01")
         sub = f"subtitles={ass}:fontsdir={FONTS_DIR}"
         graph = ";".join(parts) + f";{concat}concat=n={len(cuts)}:v=1:a=0,{grade},{sub}[out]"
 
@@ -151,4 +152,8 @@ if __name__ == "__main__":
     for cut in plan["cuts"]:
         src = Path(cut["src"])
         cut["src"] = src if src.is_absolute() else plan_path.parent / src
+    # 似たカット（同じ素材の近い場面）が続くと飽きるので、続いていたら知らせる
+    for prev, cur in zip(plan["cuts"], plan["cuts"][1:]):
+        if prev["src"] == cur["src"] and abs(prev["start"] - cur["start"]) < 5:
+            print(f"注意: 似たカットが続いています: {cur['src'].name} {prev['start']}秒と{cur['start']}秒", file=sys.stderr)
     render(plan, Path(sys.argv[2]))
